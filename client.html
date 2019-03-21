@@ -15,7 +15,7 @@
             overflow: auto;
         }
 
-        #msg {
+        #msg,#path {
             width: 400px;
         }
     </style>
@@ -23,7 +23,7 @@
         var socket;
 
         function init() {
-            var host = "ws://127.0.0.1:9000/testwebsock.php"; // SET THIS TO YOUR SERVER
+            var host = "ws://"+`${document.getElementById("path").value}`; // SET THIS TO YOUR SERVER
             try {
                 socket = new WebSocket(host);
                 log('WebSocket - status ' + socket.readyState);
@@ -84,6 +84,7 @@
 <body onload="init()">
     <h3>WebSocket v2.00</h3>
     <div id="log"></div>
+    path:<input id="path" value="127.0.0.1:9000/testwebsock.php" type="textbox" /><br/>
     <input id="msg" type="textbox" onkeypress="onkey(event)" />
     <button onclick="send()">Send</button>
     <button onclick="quit()">Quit</button>
